@@ -11,3 +11,4 @@ catboost
 xgboost
 mlflow
 dagshub
+flask
