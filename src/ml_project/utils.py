@@ -6,6 +6,9 @@ import pandas as pd
 from dotenv import load_dotenv
 import pymysql
 
+import pickle
+import numpy as np
+
 load_dotenv()
 
 host = os.getenv("host")
@@ -28,5 +31,13 @@ def read_sql_data():
         logging.info("Reading SQL database completed")
         return df
     
+    except Exception as e:
+        raise CustomException(e, sys)
+
+def save_object(file_path, obj):
+    try:
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, "wb") as f:
+            pickle.dump(obj, f)
     except Exception as e:
         raise CustomException(e, sys)

@@ -21,7 +21,8 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         try:
             ## reading data
-            df = read_sql_data()
+            # df = read_sql_data()
+            df = pd.read_csv(os.path.join('notebook/data', 'raw.csv'))
             logging.info("Reading completed from my sql database")
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
             train_set, test_set = train_test_split(df, test_size=0.2, random_state=42)
